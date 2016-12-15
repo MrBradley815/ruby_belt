@@ -21,7 +21,7 @@
         <% @products.each do |product| %>
             <tr>
                 <td><%=product.name%></td>
-                <td><%=product.user.first%></td>
+                <td><%=product.user.first%> <%=product.user.last%></td>
                 <td><%=product.created_at.strftime("%B %d, %Y")%></td>
                 <td><%=number_to_currency(product.price)%></td>
                 <td><a href="/products/<%=product.id%>/update" data-method="patch">Buy</a></td>
