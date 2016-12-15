@@ -4,13 +4,13 @@ Rails.application.routes.draw do
     post 'sessions/create' => 'sessions#create'
     delete 'sessions' => 'sessions#destroy'
 
-    get 'users' => 'users#index'
-    get 'users/new' => 'users#new'
     post 'users/create' => 'users#create'
     get 'users/:id' => 'users#show'
-    get 'users/:id/edit' => 'users#edit'
-    patch 'users/:id' => 'users#update'
-    delete 'users/:id' => 'users#destroy'
+
+    get 'products' => 'products#index'
+    post 'products/create' => 'products#create'
+    patch 'products/:id/update' => 'products#update'
+    delete 'products/:id' => 'products#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

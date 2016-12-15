@@ -1,15 +1,10 @@
 <style media="screen">
-    .register{
+    form{
         display: inline-block;
-        margin: 3px;
-    }
-    .login{
-        display: inline-block;
-        margin: 3px;
+        margin: 10px;
+        padding: 15px;
+        border: 1px solid black;
         vertical-align: top;
-    }
-    select{
-        margin-left: 8px;
     }
 </style>
 <h1>Welcome!</h1>
@@ -19,24 +14,18 @@
         <p><%= error %></p>
     <% end %>
 <% end %>
-<fieldset class="register">
-    <legend><h2>Register</h2></legend>
-    <form action="/users/create" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <p>First Name: <input type="text" name="user[first]"></p>
-        <p>Last Name: <input type="text" name="user[last]"></p>
-        <p>Email: <input type="email" name="user[email]"></p>
-        <p>Password: <input type="password" name="user[password]"></p>
-        <p>Confirm Password: <input type="password" name="user[password_confirmation]"></p>
-        <input type="submit" value="Register">
-    </form>
-</fieldset>
-<fieldset class="login">
-    <legend><h2>Login</h2></legend>
-    <form action="/sessions/create" method="post">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <p>Email: <input type="text" name="user[email]"></p>
-        <p>Password: <input type="password" name="user[password]"></p>
-        <input type="submit" name="Login">
-    </form>
-</fieldset>
+<form action="/users/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <p>First Name: <input type="text" name="user[first]"></p>
+    <p>Last Name: <input type="text" name="user[last]"></p>
+    <p>Email: <input type="email" name="user[email]"></p>
+    <p>Password: <input type="password" name="user[password]"></p>
+    <p>Confirm Password: <input type="password" name="user[password_confirmation]"></p>
+    <input type="submit" value="Register">
+</form>
+<form action="/sessions/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <p>Email: <input type="text" name="user[email]"></p>
+    <p>Password: <input type="password" name="user[password]"></p>
+    <input type="submit" name="Login">
+</form>

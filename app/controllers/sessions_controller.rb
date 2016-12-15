@@ -5,14 +5,13 @@ class SessionsController < ApplicationController
         user = User.find_by_email(login_params[:email])
         if user && user.authenticate(login_params[:password])
             session[:user_id] = user.id
-            flash[:success] = ["Login Successful"]
-            redirect_to "/users"
+            redirect_to "/products"
         else
             flash[:errors] = ["Invalid combination"]
             redirect_to root_path
         end
     end
-    def logout
+    def destroy
         reset_session
         redirect_to root_path
     end

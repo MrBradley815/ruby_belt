@@ -1,0 +1,85 @@
+<style media="screen">
+    table,th,td{
+        border: 1px solid black;
+        padding: 5px;
+    }
+    span{
+        font-weight: bold;
+    }
+</style>
+<a href="/products">Go to All Products</a> | <a href="/sessions" data-method="delete">Log Out</a>
+<h3>Hi <%=current_user.first%></h3>
+<h1>Sell Product</h1>
+<form action="/products/create" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    <p>Name: <input type="text" name="product[name]"></p>
+    <p>Amount: <input type="number" name="product[price]"></p>
+    <input type="submit" value="Sell">
+</form>
+<h3>Your products that are not yet sold:</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Date Posted</th>
+            <th>Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @selling.each do |product| %>
+            <tr>
+                <td><%=product.name%></td>
+                <td><%=product.created_at.strftime("%B %d, %Y")%></td>
+                <td><%=number_to_currency(product.price)%></td>
+                <td><a href="/products/<%=product.id%>" data-method="delete">Remove</a></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<br>
+<h3>Sales:</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Date Bought</th>
+            <th>Buyer</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @sold.each do |product| %>
+            <tr>
+                <td><%=product.name%></td>
+                <td><%=product.updated_at.strftime("%B %d, %Y")%></td>
+                <td><%=product.buyer.first%> <%=product.buyer.last%></td>
+                <td><%=number_to_currency(product.price)%></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<p><span>Total: <%=number_to_currency(@sales)%></span></p>
+<br>
+<h3>Purchases:</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Date Bought</th>
+            <th>Seller</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @bought.each do |product| %>
+            <tr>
+                <td><%=product.name%></td>
+                <td><%=product.updated_at.strftime("%B %d, %Y")%></td>
+                <td><%=product.user.first%> <%=product.user.last%></td>
+                <td><%=number_to_currency(product.price)%></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+<p><span>Total: <%=number_to_currency(@purchases)%></span></p>
